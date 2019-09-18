@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
+using Serilog;
 
 namespace APICQRSMediatR
 {
@@ -33,6 +34,7 @@ namespace APICQRSMediatR
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSerilogRequestLogging();
             app.UseMvc();
         }
     }

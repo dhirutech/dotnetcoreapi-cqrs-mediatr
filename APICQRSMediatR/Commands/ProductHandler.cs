@@ -1,6 +1,7 @@
 ﻿using APICQRSMediatR.Models;
 using APICQRSMediatR.Repositories.Interface;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using DataModels = APICQRSMediatR.Repositories.Models;
@@ -9,10 +10,13 @@ namespace APICQRSMediatR.Commands
 {
     public class ProductHandler : IRequestHandler<CreateProduct, bool>, IRequestHandler<UpdateProduct, bool>, IRequestHandler<DeleteProduct, bool>
     {
+        private readonly ILogger<ProductHandler> _logger = null;
         private readonly IProductRepository _productRepo;
-        public ProductHandler(IProductRepository productRepo)
+
+        public ProductHandler(IProductRepository productRepo, ILogger<ProductHandler> logger)
         {
             _productRepo = productRepo;
+            _logger = logger;
         }
 
         public async Task<bool> Handle(CreateProduct request, CancellationToken cancellationToken)
