@@ -1,6 +1,7 @@
 ﻿using APICQRSMediatR.Models;
 using APICQRSMediatR.Repositories.Interface;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,13 @@ namespace APICQRSMediatR.Queries
 {
     public class ProductQueryHandler : IRequestHandler<FindAllQuery, IEnumerable<Product>>, IRequestHandler<FindByCodeQuery, Product>
     {
+        private readonly ILogger<ProductQueryHandler> _logger = null;
         private readonly IProductRepository _productRepo;
-        public ProductQueryHandler(IProductRepository productRepo)
+
+        public ProductQueryHandler(IProductRepository productRepo, ILogger<ProductQueryHandler> logger)
         {
             _productRepo = productRepo;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<Product>> Handle(FindAllQuery request, CancellationToken cancellationToken)
