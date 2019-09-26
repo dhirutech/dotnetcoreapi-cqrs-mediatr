@@ -58,8 +58,12 @@ namespace APICQRSMediatR.Controllers
         {
             try
             {
+                _logger.LogInformation("in create function...");
                 var result = await _mediator.Send(request);
-                return new OkObjectResult(result);
+                _logger.LogInformation("out from repo function...");
+
+                throw new Exception("this is test exception");
+                //return new OkObjectResult(result);
             }
             catch (Exception ex)
             {

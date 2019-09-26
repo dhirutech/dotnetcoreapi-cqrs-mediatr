@@ -15,6 +15,7 @@ namespace APICQRSMediatR
                     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                     .Enrich.FromLogContext()
                     .WriteTo.Console()
+                    .WriteTo.EventCollector("http://localhost:8088/services/collector/raw", "5e863cc0-4ee3-40b1-8f1a-8b83ce47f83f")
                     .CreateLogger();
             try
             {
