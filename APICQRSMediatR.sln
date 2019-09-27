@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICQRSMediatR", "APICQRSMediatR\APICQRSMediatR.csproj", "{1EAC03DC-26F1-461F-9B4A-10177EBACFFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APICQRSMediatR", "APICQRSMediatR\APICQRSMediatR.csproj", "{1EAC03DC-26F1-461F-9B4A-10177EBACFFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICQRSMediatR.Repositories", "APICQRSMediatR.DataAccess\APICQRSMediatR.Repositories.csproj", "{505D24BE-E496-4F0A-81DA-FC20637565AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APICQRSMediatR.Repositories", "APICQRSMediatR.DataAccess\APICQRSMediatR.Repositories.csproj", "{505D24BE-E496-4F0A-81DA-FC20637565AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICQRSMediatR.Test", "APICQRSMediatR.Test\APICQRSMediatR.Test.csproj", "{509F4B3B-D5BE-4370-AE94-EE372E1BFB38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{505D24BE-E496-4F0A-81DA-FC20637565AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{505D24BE-E496-4F0A-81DA-FC20637565AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{505D24BE-E496-4F0A-81DA-FC20637565AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{509F4B3B-D5BE-4370-AE94-EE372E1BFB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{509F4B3B-D5BE-4370-AE94-EE372E1BFB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{509F4B3B-D5BE-4370-AE94-EE372E1BFB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{509F4B3B-D5BE-4370-AE94-EE372E1BFB38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
