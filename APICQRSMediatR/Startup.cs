@@ -24,6 +24,11 @@ namespace APICQRSMediatR
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+            });
             services.AddMediatR(typeof(Startup).Assembly);
         }
 

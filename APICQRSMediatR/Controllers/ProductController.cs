@@ -11,6 +11,7 @@ namespace APICQRSMediatR.Controllers
 {
     [Route("api/product")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
