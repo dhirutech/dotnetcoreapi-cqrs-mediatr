@@ -4,6 +4,7 @@ using APICQRSMediatR.Models;
 using APICQRSMediatR.Queries;
 using APICQRSMediatR.Utilities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -53,6 +54,7 @@ namespace APICQRSMediatR.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator,Analyst")]
         // POST api/product/create
         [HttpPost("create")]
         public async Task<ActionResult> Create(CreateProduct request)
@@ -72,6 +74,7 @@ namespace APICQRSMediatR.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator,Analyst")]
         // POST api/product/update
         [HttpPost("update")]
         public async Task<ActionResult> Update(UpdateProduct request)
@@ -87,6 +90,7 @@ namespace APICQRSMediatR.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         // POST api/product/delete
         [HttpPost("delete")]
         public async Task<IActionResult> Delete(DeleteProduct request)
