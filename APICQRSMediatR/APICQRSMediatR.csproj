@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\APICQRSMediatR.DataAccess\APICQRSMediatR.Repositories.csproj" />
+    <ProjectReference Include="..\APICQRSMediatR.Security\APICQRSMediatR.Security.csproj" />
   </ItemGroup>
 
 </Project>

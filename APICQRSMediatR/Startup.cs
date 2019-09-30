@@ -7,6 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Serilog;
+using APICQRSMediatR.Security.Interfaces;
+using APICQRSMediatR.Security.Logics;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System;
+using Microsoft.IdentityModel.Tokens;
 
 namespace APICQRSMediatR
 {
@@ -22,7 +27,22 @@ namespace APICQRSMediatR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                var signingKey = Convert.FromBase64String(Configuration["Jwt:SigningSecret"]);
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(signingKey)
+                };
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddApiVersioning(options =>
             {
@@ -40,6 +60,7 @@ namespace APICQRSMediatR
                 app.UseDeveloperExceptionPage();
             }
             app.UseSerilogRequestLogging();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
