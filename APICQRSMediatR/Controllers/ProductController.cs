@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using APICQRSMediatR.Models;
 using APICQRSMediatR.Queries;
+using APICQRSMediatR.Security.Logics;
 using APICQRSMediatR.Utilities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -59,9 +61,11 @@ namespace APICQRSMediatR.Controllers
         [HttpPost("create")]
         public async Task<ActionResult> Create(CreateProduct request)
         {
+            var authorizationHeader = HttpContext.Request.Headers["Authorization"];
+            var idToken = new IdentityToken(AuthenticationHeaderValue.Parse(authorizationHeader));
             try
             {
-                _logger.LogInformation("in create function...");
+                _logger.LogInformation($"in create function...UserId-{idToken.UserId} and Role-{idToken.Role}");
                 var result = await _mediator.Send(request);
                 _logger.LogInformation("out from repo function...");
 
