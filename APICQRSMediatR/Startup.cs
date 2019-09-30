@@ -12,6 +12,7 @@ using APICQRSMediatR.Security.Logics;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace APICQRSMediatR
 {
@@ -49,6 +50,15 @@ namespace APICQRSMediatR
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
             });
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1.0", new Info
+            {
+                Version = "v1.0",
+                Title = "microservice",
+                Description = "dotnetcoreapi developed with cqrs and mediatr partten with serilog to splunk," +
+                "also added xunit test cases and authentication and autherization",
+                TermsOfService = "None",
+                Contact = new Contact() { Name = "Dhiraj", Email = "dhiraj.bairagi@yahoo.com", Url = "https://www.linkedin.com/in/dhirajbairagi/" }
+            }));
             services.AddMediatR(typeof(Startup).Assembly);
         }
 
@@ -62,6 +72,11 @@ namespace APICQRSMediatR
             app.UseSerilogRequestLogging();
             app.UseAuthentication();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "microservice v1.0");
+            });
         }
     }
 }
